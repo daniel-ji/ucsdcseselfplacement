@@ -1,0 +1,1 @@
+A self-placement site for students to decide which introductory CSE course to take at UCSD. Inspired by the CSE 12X Self-Placement survey created by the CS department at University of Washington!
