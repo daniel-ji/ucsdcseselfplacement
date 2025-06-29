@@ -7,6 +7,7 @@
 tab_title: CSE Self-Placement
 page_title: Welcome to the UCSD CSE Self-Placement
 page_description: "This is the self-placement page for the CSE department at UCSD. Take the following survey to determine which CSE courses you should take next quarter: CSE 6R, CSE 8A, or CSE 11). Inspired by the CSE 12X Self-Placement survey created by the CS department at University of Washington!"
+root_question_variable: taken_previous_course
 
 question_text_variables:
   coding_question_output_text: "Read and work on this problem, then answer the next question: What is the output after executing the following code?"
@@ -14,6 +15,74 @@ question_text_variables:
   topic_familiarity_question_text: "How familiar and comfortable are you with each of the following programming topics/constructs?"
 
 question_variables:
+  taken_previous_course:
+    question_text: "Have you taken a previous computer science course?"
+    answers:
+      - answer_text: "Yes"
+        question_variable: "previous_course"
+      - answer_text: "No"
+        question_variable: "previous_experience"
+
+  previous_experience:
+    question_text: "Do you have previous programming experience outside of a course?"
+    answers:
+      - answer_text: "Yes"
+        question_variable: "topic_familiarity"
+      - answer_text: "No"
+        outcome: "CSE 121"
+
+  previous_course:
+    question_text: "What is the most recent computer science course you have completed?"
+    answers:
+      - answer_text: "CSE 142 (at UW, UW in the High School, or a community college)"
+        question_variable: "cse_142_grade"
+      - answer_text: "Advanced Placement (AP) Computer Science A"
+        question_variable: "ap_score"
+      - answer_text: "Advanced Placement (AP) Computer Science Principles"
+        question_variable: "topic_familiarity"
+      - answer_text: "International Baccalaureate (IB) Computer Science - Standard Level (SL)"
+        question_variable: "ib_score"
+      - answer_text: "International Baccalaureate (IB) Computer Science - Higher Level (HL)"
+        question_variable: "ib_score"
+      - answer_text: "Exploring Computer Science"
+        question_variable: "topic_familiarity"
+      - answer_text: "Other"
+        question_variable: "topic_familiarity"
+
+  cse_142_grade:
+    question_text: "What was your grade in CSE 142?"
+    answers:
+      - answer_text: "0.0-0.9"
+        outcome: "Talk to Advising"
+      - answer_text: "1.0-1.9"
+        outcome: "Talk to Advising"
+      - answer_text: "2.0-2.9"
+        question_variable: "topic_familiarity"
+      - answer_text: "3.0-4.0"
+        question_variable: "topic_familiarity"
+      - answer_text: "S"
+        question_variable: "topic_familiarity"
+      - answer_text: "NS"
+        outcome: "Talk to Advising"
+      - answer_text: "I do not have a grade in CSE 142"
+        outcome: "Talk to Advising"
+
+  ap_score:
+    question_text: "What was your score on the AP Computer Science A exam?"
+    answers:
+      - answer_text: "1"
+        outcome: "Talk to Advising"
+      - answer_text: "2"
+        outcome: "Talk to Advising"
+      - answer_text: "3"
+        question_variable: "topic_familiarity"
+      - answer_text: "4"  
+        question_variable: "topic_familiarity"
+      - answer_text: "5"
+        question_variable: "topic_familiarity"
+      - answer_text: "I did not take the exam or do not have a score"
+        question_variable: "topic_familiarity"
+
   ib_score:
     question_text: "What was your score on the IB Computer Science exam?"
     answers:
@@ -522,64 +591,6 @@ answer_text_variables:
       answers_label: 4
     - answer_text: "I was able to solve the problem with no difficulty."
       answers_label: 5
-
-survey:
-  question:
-    question_text: "Have you taken a previous computer science course?"
-    answers:
-      - answer_text: "Yes"
-        question:
-          question_text: "What is the most recent computer science course you have completed?"
-          answers:
-            - answer_text: "CSE 142 (at UW, UW in the High School, or a community college)"
-              question: "What was your grade in CSE 142?"
-              answers:
-                - answer_text: "0.0-0.9"
-                  outcome: "Talk to Advising"
-                - answer_text: "1.0-1.9"
-                  outcome: "Talk to Advising"
-                - answer_text: "2.0-2.9"
-                  question_variable: "topic_familiarity"
-                - answer_text: "3.0-4.0"
-                  question_variable: "topic_familiarity"
-                - answer_text: "S"
-                  question_variable: "topic_familiarity"
-                - answer_text: "NS"
-                  outcome: "Talk to Advising"
-                - answer_text: "I do not have a grade in CSE 142"
-            - answer_text: "Advanced Placement (AP) Computer Science A"
-              question: "What was your score on the AP Computer Science A exam?"
-              answers:
-                - answer_text: "1"
-                  outcome: "Talk to Advising"
-                - answer_text: "2"
-                  outcome: "Talk to Advising"
-                - answer_text: "3"
-                  question_variable: "topic_familiarity"
-                - answer_text: "4"
-                  question_variable: "topic_familiarity"
-                - answer_text: "5"
-                  question_variable: "topic_familiarity"
-                - answer_text: "I did not take the exam or do not have a score"
-                  question_variable: "topic_familiarity"
-            - answer_text: "Advanced Placement (AP) Computer Science Principles"
-              question_variable: "topic_familiarity"
-            - answer_text: "International Baccalaureate (IB) Computer Science - Standard Level (SL)"
-              question_variable: "ib_score"
-            - answer_text: "International Baccalaureate (IB) Computer Science - Higher Level (HL)"
-              question_variable: "ib_score"
-            - answer_text: "Exploring Computer Science"
-              question_variable: "topic_familiarity"
-            - answer_text: "Other"
-              question_variable: "topic_familiarity"
-      - answer_text: "No"
-        question:
-          question_text: "Do you have previous programming experience outside of a course?"
-          answers:
-            - answer_text: "Yes"
-              question_variable: "topic_familiarity"
-            - answer_text: "No"
-              outcome: "CSE 121"
 
 outcomes:
   - outcome_text: "CSE 121"
