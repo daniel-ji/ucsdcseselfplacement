@@ -15,11 +15,11 @@ question_text_variables:
   topic_familiarity_question_text: "How familiar and comfortable are you with each of the following programming topics/constructs?"
 
 question_variables:
-  taken_previous_course:
-    question_text: "Have you taken a previous computer science course?"
+  taken_previous_course: # question variable name, can be anything, but must be unique
+    question_text: "Have you taken a previous computer science course?" # question_text, either this or "question_text_variable" field is required
     answers:
-      - answer_text: "Yes"
-        question_variable: "previous_course"
+      - answer_text: "Yes" # answer_text, required field
+        question_variable: "previous_course" # next question to ask
       - answer_text: "No"
         question_variable: "previous_experience"
 
@@ -104,11 +104,11 @@ question_variables:
         question_variable: "topic_familiarity"
 
   topic_familiarity:
-    question_text_variable: topic_familiarity_question_text
-    subquestions:
-      - question_text: "Variables and assignment statements"
-        subquestion_label: "variables"
-        answers_variable: familiarity
+    question_text_variable: topic_familiarity_question_text # just like a regular question, either this or "question_text" field is required
+    subquestions: # instead of answers, we have subquestions
+      - question_text: "Variables and assignment statements" # either this or "question_text_variable" field is required
+        subquestion_label: "variables" # subquestion_label, the key of the subquestion dictionary used in logic, must be unique for each subquestion
+        answers_variable: familiarity # either this or "answers" field is required 
       - question_text: "Data types (e.g., int, double, String, char)"
         subquestion_label: "data_types"
         answers_variable: familiarity
@@ -124,7 +124,7 @@ question_variables:
       - question_text: "Arrays and/or lists"
         subquestion_label: "arrays"
         answers_variable: familiarity
-    subquestions_logic: |
+    subquestions_logic: | # logic to determine the next question or outcome based on the subquestions, python code
       if 1 in subquestions.values() or 2 in subquestions.values() or 3 in subquestions.values():
         return {outcome: "CSE 121"}
       else:
@@ -158,7 +158,7 @@ question_variables:
             }
         }
 
-      solution: |
+      solution: | # note that no actual checking is done against the solution, this is just for display purposes
         .......1
         ......2
         .....3
@@ -169,7 +169,7 @@ question_variables:
         8
 
     answers_variable: coding_question_performance
-    answer_logic: |
+    answer_logic: | # note that this can be used in a non-coding question as well
       if answer == 1 or answer == 2:
         return {outcome: "CSE 121"}
       elif answer == 3:
@@ -602,6 +602,12 @@ outcomes:
     outcome_description: >
       "You seem to have a solid grasp of the basics, so we recommend you take CSE 122. This course will help you take the next step with your programming skills and learn to apply the concepts you already know in new and exciting ways. 
       CSE 122 is taught in Java, but is designed for students with a wide range of previous experiences, so you should feel confident enrolling even if your experience is in another programming language.
+      You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team."
+  - outcome_text: "CSE 123"
+    outcome_description: >
+      "You have a lot of experience programming and have a strong understanding of some more advanced topics, so we recommend you take CSE 123. This course will teach you to use your existing programming skills to implement and manipulate complex data structures, and will also introduce some more advanced programming concepts. 
+      If you're more interested in using programming as a tool for data analysis and visualization, you might also want to consider CSE 163. This course builds on previous programming experience similarly to CSE 123, but with a focus on writing programs that manipulate and analyze different types of datasets. 
+      CSE 163 is taught in Python, but is designed to help students who have previously programmed in Java adapt, so you should feel confident enrolling even if you've never used Python before.
       You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team."
   - outcome_text: "Talk to Advising"
     outcome_description: >
