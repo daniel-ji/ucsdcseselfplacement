@@ -1,0 +1,56 @@
+# global configuration
+tab_title: Video Game Consoles
+page_title: Welcome to Niema's Video Game Console Identifier
+page_description: "This is a toy example for use with Daniel Ji's Q&A decision tree tool."
+root_question_variable: company
+
+# useful variables for reuse
+question_text_variables:
+  disc_type_text: "What type of disc does it primarily use?"
+  handheld_text: "Is it a handheld console?"
+  release_date_text: "When was the console released?"
+
+# questions
+question_variables:
+  company:
+    question_text: "What company developed it?"
+    answers:
+      - answer_text: "Atari"
+        outcome: "Atari consoles are not supported at this time"
+      - answer_text: "Microsoft"
+        outcome: "Microsoft consoles are not supported at this time"
+      - answer_text: "Nintendo"
+        outcome: "Nintendo consoles are not supported at this time"
+      - answer_text: "Sega"
+        outcome: "Sega consoles are not supported at this time"
+      - answer_text: "Sony"
+        question_variable: "disc_type_sony"
+  disc_type_sony:
+    question_text_variable: disc_type_text
+    answers:
+      - answer_text: "None"
+        question_variable: "handheld_sony_discless"
+      - answer_text: "CD"
+        outcome: "PlayStation (PSX)"
+      - answer_text: "DVD"
+        outcome: "PlayStation 2 (PS2)"
+      - answer_text: "Blu-ray"
+        question_variable: "release_date_sony_bluray"
+      - answer_text: "UMD"
+        outcome: "PlayStation Portable (PSP)"
+  handheld_sony_discless:
+    question_text_variable: handheld_text
+    answers:
+      - answer_text: "Yes"
+        outcome: "PlayStation Vita (PS Vita)"
+      - answer_text: "No"
+        outcome: "PlayStation 5 (PS5) Digital Edition"
+  release_date_sony_bluray:
+    question_text_variable: release_date_text
+    answers:
+      - answer_text: "<2010"
+        outcome: "PlayStation 3 (PS3)"
+      - answer_text: "2010-2019"
+        outcome: "PlayStation 4 (PS4)"
+      - answer_text: "2020+"
+        outcome: "PlayStation 5 (PS5)"
