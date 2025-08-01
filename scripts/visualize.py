@@ -15,6 +15,9 @@ try:
 except:
     print("Unable to import `yaml`. Install: pip install pyyaml")
 
+# constants
+DUMMY_OUTCOME_PREFIX = 'dummy_outcome'
+
 # helper function to print error messages and quit
 def error(s='', end='\n', file=stderr, exit_status=1):
     print(s, end=end, file=file); exit(exit_status)
@@ -54,7 +57,7 @@ if __name__ == "__main__":
             if 'outcome' in option:
                 num_outcomes += 1
                 destination_type = 'outcome'
-                destination_var = 'outcome%d' % num_outcomes
+                destination_var = '%s_%d' % (DUMMY_OUTCOME_PREFIX, num_outcomes)
                 node_labels[destination_var] = option['outcome']
             elif 'question_variable' in option:
                 destination_type = 'question_variable'
@@ -67,13 +70,13 @@ if __name__ == "__main__":
     print("digraph G {")
     print("  // nodes")
     for var, label in sorted(node_labels.items(), key=lambda x: x[0]):
-        print('  %s [label="%s"];' % (var, label))
+        node_params = ''
+        if var.startswith(DUMMY_OUTCOME_PREFIX + '_'):
+            node_params += ', color=red, fontcolor=red'
+        print('  %s [label="%s"%s];' % (var, label, node_params))
     print()
     print("  // edges")
     for var, outgoing in sorted(edges.items(), key=lambda x: x[0]):
         for option_text, destination_type, destination_var in outgoing:
-            edge_params = ''
-            if destination_type == 'outcome':
-                edge_params += ', color=red, fontcolor=red'
-            print('  %s -> %s [label="%s"%s];' % (var, destination_var, option_text, edge_params))
+            print('  %s -> %s [label="%s"];' % (var, destination_var, option_text))
     print("}")
