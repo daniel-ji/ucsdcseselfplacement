@@ -22,6 +22,7 @@ A self-placement site for students to decide which introductory CSE course to ta
 - The output will be saved as DOT file, which can then be visualized in any DOT graph visualization tool, such as https://dreampuf.github.io/GraphvizOnline
 
 #### Live development
+- Install Node.js and npm [here](https://nodejs.org/en/download)
 - Clone the repository and run `npm install`
 - Run `npm run dev` to start the development server
 - Modify the `public/config.yaml` file to change the questions and logic
