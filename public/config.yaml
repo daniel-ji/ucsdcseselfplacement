@@ -1,12 +1,6 @@
-# TODO: Permit the yaml contents that are embedded in the HTML to have rich(er) text formatting.
-# TODO: Add support for past answers in the logic handling at tree nodes.
-# TODO: Create a LinkML(?) or Pydantic validator for this YAML file (so creating the file is easier and less error-prone).
-# TODO: Add support for an external file for code snippets that can be imported into the YAML file (easier development and testing of the code snippets).
-# TODO: Create a visualization of the decision tree (for easier debugging and understanding of the flow).
-
-tab_title: CSE Self-Placement
-page_title: Welcome to the UCSD CSE Self-Placement
-page_description: "This is the self-placement page for the CSE department at UCSD. Take the following survey to determine which CSE courses you should take next quarter: CSE 6R, CSE 8A, or CSE 11). Inspired by the CSE 12X Self-Placement survey created by the CS department at University of Washington!"
+tab_title: CSE Self-Placement Quiz
+page_title: Welcome to the UCSD CSE Self-Placement Quiz
+page_description: "This is the self-placement page for the CSE department at UCSD. Take the following survey to determine which CSE courses you should take next quarter: CSE 6R, CSE 8A, or CSE 11. Inspired by the CSE 12X Self-Placement survey created by the CS department at University of Washington!"
 root_question_variable: taken_previous_course
 
 question_text_variables:
@@ -126,12 +120,13 @@ question_variables:
         answers_variable: familiarity
     subquestions_logic: | # logic to determine the next question or outcome based on the subquestions, python code
       if 1 in subquestions.values() or 2 in subquestions.values() or 3 in subquestions.values():
-        return {outcome: "CSE 121"}
+        return {"outcome": "CSE 121"}
       else:
-        return {question_variable: "coding_question_1"}
+        return {"question_variable": "coding_question_1"}
 
   coding_question_1:
     question_text_variable: coding_question_output_text
+    coding_question_label: "Coding Question 1"
     code:
       python: |
         def figure(max_num):
@@ -171,14 +166,15 @@ question_variables:
     answers_variable: coding_question_performance
     answer_logic: | # note that this can be used in a non-coding question as well
       if answer == 1 or answer == 2:
-        return {outcome: "CSE 121"}
+        return {"outcome": "CSE 121"}
       elif answer == 3:
-        return {outcome: "Talk to Advising"}
+        return {"outcome": "Talk to Advising"}
       elif answer == 4 or answer == 5:
-        return {question_variable: "coding_question_2"}
+        return {"question_variable": "coding_question_2"}
 
   coding_question_2:
     question_text_variable: coding_question_output_text
+    coding_question_label: "Coding Question 2"
     code:
       python: |
         def mystery(x, values):
@@ -221,14 +217,15 @@ question_variables:
     answers_variable: coding_question_performance
     answer_logic: |
       if answer == 1 or answer == 2:
-        return {outcome: "CSE 121"}
+        return {"outcome": "CSE 121"}
       elif answer == 3:
-        return {outcome: "Talk to Advising"}
+        return {"outcome": "Talk to Advising"}
       elif answer == 4 or answer == 5:
-        return {question_variable: "coding_question_3"}
+        return {"question_variable": "coding_question_3"}
 
   coding_question_3:
     question_text_variable: coding_question_describe_text
+    coding_question_label: "Coding Question 3"
     code:
       python: |
         def input_loop():
@@ -271,11 +268,11 @@ question_variables:
     answers_variable: coding_question_performance
     answer_logic: |
       if answer == 1 or answer == 2:
-        return {outcome: "CSE 121"}
+        return {"outcome": "CSE 121"}
       elif answer == 3:
-        return {outcome: "Talk to Advising"}
+        return {"outcome": "Talk to Advising"}
       elif answer == 4 or answer == 5:
-        return {question_variable: "topic_familiarity_advanced"}
+        return {"question_variable": "topic_familiarity_advanced"}
 
   topic_familiarity_advanced:
     question_text_variable: topic_familiarity_question_text
@@ -298,9 +295,9 @@ question_variables:
 
     subquestions_logic: |
       if 1 in subquestions.values() or 2 in subquestions.values() or 3 in subquestions.values():
-        return {outcome: "CSE 122"}
+        return {"outcome": "CSE 122"}
       else:
-        return {question_variable: "coding_question_4"}
+        return {"question_variable": "coding_question_4"}
 
   coding_question_4:
     question_text_variable: coding_question_describe_text
@@ -344,11 +341,11 @@ question_variables:
     answers_variable: coding_question_performance
     answer_logic: |
       if answer == 1 or answer == 2:
-        return {outcome: "CSE 122"}
+        return {"outcome": "CSE 122"}
       elif answer == 3:
-        return {outcome: "Talk to Advising"}
+        return {"outcome": "Talk to Advising"}
       elif answer == 4 or answer == 5:
-        return {outcome: "coding_question_5"}
+        return {"question_variable": "coding_question_5"}
 
   coding_question_5:
     question_text_variable: coding_question_output_text
@@ -426,11 +423,11 @@ question_variables:
     answers_variable: coding_question_performance
     answer_logic: |
       if answer == 1 or answer == 2:
-        return {outcome: "CSE 122"}
+        return {"outcome": "CSE 122"}
       elif answer == 3:
-        return {outcome: "Talk to Advising"}
+        return {"outcome": "Talk to Advising"}
       elif answer == 4 or answer == 5:
-        return {outcome: "coding_question_6"}
+        return {"question_variable": "coding_question_6"}
 
   coding_question_6:
     question_text_variable: coding_question_output_text
@@ -561,55 +558,55 @@ question_variables:
     answers_variable: coding_question_performance
     answer_logic: |
       if answer == 1 or answer == 2:
-        return {outcome: "CSE 122"}
+        return {"outcome": "CSE 122"}
       elif answer == 3:
-        return {outcome: "Talk to Advising"}
+        return {"outcome": "Talk to Advising"}
       elif answer == 4 or answer == 5:
-        return {outcome: "CSE 123"}
+        return {"outcome": "CSE 123"}
 
 answer_text_variables:
   familiarity:
     - answer_text: "I have never heard of this."
-      answers_label: 1
+      answer_label: 1
     - answer_text: "I have heard of this but don't know what it is or don't understand it."
-      answers_label: 2
+      answer_label: 2
     - answer_text: "I know what this is but I am not comfortable using it in programming."
-      answers_label: 3
+      answer_label: 3
     - answer_text: "I am somewhat comfortable using this in programming."
-      answers_label: 4
+      answer_label: 4
     - answer_text: "I am entirely comfortable using this in programming."
-      answers_label: 5
+      answer_label: 5
 
   coding_question_performance:
     - answer_text: "I did not understand the problem or did not know how to begin solving it."
-      answers_label: 1
+      answer_label: 1
     - answer_text: "I was able to begin solving the problem but got stuck."
-      answers_label: 2
+      answer_label: 2
     - answer_text: "I was able to complete the problem but struggled greatly."
-      answers_label: 3
+      answer_label: 3
     - answer_text: "I was able to solve the problem with a little difficulty."
-      answers_label: 4
+      answer_label: 4
     - answer_text: "I was able to solve the problem with no difficulty."
-      answers_label: 5
+      answer_label: 5
 
 outcomes:
   - outcome_text: "CSE 121"
     outcome_description: >
-      "Since you don't have any previous programming experience, we recommend you take CSE 121. This course will start from the very beginning and will help you learn basic programming skills along with other students with limited experience.
+      Since you don't have any previous programming experience, we recommend you take CSE 121. This course will start from the very beginning and will help you learn basic programming skills along with other students with limited experience.
       If you're more interested in using programming as a tool for data analysis and visualization, you might also want to consider CSE 160. This course also does not require any previous experience and focuses on using programming in Python to solve problems using data sets drawn from the sciences, engineering, business and the humanities.
-      You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team."
+      You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team.
   - outcome_text: "CSE 122"
     outcome_description: >
-      "You seem to have a solid grasp of the basics, so we recommend you take CSE 122. This course will help you take the next step with your programming skills and learn to apply the concepts you already know in new and exciting ways. 
+      You seem to have a solid grasp of the basics, so we recommend you take CSE 122. This course will help you take the next step with your programming skills and learn to apply the concepts you already know in new and exciting ways. 
       CSE 122 is taught in Java, but is designed for students with a wide range of previous experiences, so you should feel confident enrolling even if your experience is in another programming language.
-      You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team."
+      You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team.
   - outcome_text: "CSE 123"
     outcome_description: >
-      "You have a lot of experience programming and have a strong understanding of some more advanced topics, so we recommend you take CSE 123. This course will teach you to use your existing programming skills to implement and manipulate complex data structures, and will also introduce some more advanced programming concepts. 
+      You have a lot of experience programming and have a strong understanding of some more advanced topics, so we recommend you take CSE 123. This course will teach you to use your existing programming skills to implement and manipulate complex data structures, and will also introduce some more advanced programming concepts. 
       If you're more interested in using programming as a tool for data analysis and visualization, you might also want to consider CSE 163. This course builds on previous programming experience similarly to CSE 123, but with a focus on writing programs that manipulate and analyze different types of datasets. 
       CSE 163 is taught in Python, but is designed to help students who have previously programmed in Java adapt, so you should feel confident enrolling even if you've never used Python before.
-      You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team."
+      You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team.
   - outcome_text: "Talk to Advising"
     outcome_description: >
-      "Based on your responses, there are multiple courses that might be a good fit for you. We recommend you speak with a member of course placement advising team so they can learn more about your situation and help you find the best fit.
-      You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team."
+      Based on your responses, there are multiple courses that might be a good fit for you. We recommend you speak with a member of course placement advising team so they can learn more about your situation and help you find the best fit.
+      You can learn more about all of our introductory course options on the Allen School website. If you have any more questions, feel free to reach out to our course placement advising team.
