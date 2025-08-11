@@ -110,7 +110,7 @@ result = evaluate_logic(answer)
     const pyodide = pyodideRef.current;
 
     const subquestions = {};
-    for (const [label, [text, value]] of Object.entries(currentSubselected)) {
+    for (const [label, [_text, value]] of Object.entries(currentSubselected)) {
       subquestions[label] = Number(value);
     }
 
@@ -241,6 +241,17 @@ result = evaluate_logic(subquestions.to_py())
           <pre className="bg-light p-3">
             <code>{question.code[effectiveLang].trim()}</code>
           </pre>
+        )}
+
+        {question.code?.solution && (
+          <details className="alert alert-info mt-3">
+            <summary className="fw-bold" style={{ cursor: "pointer" }}>
+              Toggle Solution
+            </summary>
+            <pre className="bg-light p-3 mt-2 mb-0">
+              <code>{question.code.solution.trim()}</code>
+            </pre>
+          </details>
         )}
 
         {renderSingleQuestion(question, disabled, stored)}
